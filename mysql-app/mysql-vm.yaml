@@ -1,0 +1,16 @@
+apiVersion: vmoperator.vmware.com/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: mysql-vm
+  labels:
+    vm-selector: mysql-vm
+    mysql-vm-lb: vm-lb-selector
+spec:
+  className: best-effort-small
+  # Friendly image name: Ubuntu-18.04-bionic-server-cloudimg-amd64
+  imageName: vmi-4790c91e8a8aff61a
+  storageClass: tmm-kubernetes-storage-policy
+  powerState: poweredOn
+  vmMetadata:
+    secretName: mysql-vm-bootstrap-secret
+    transport: CloudInit
